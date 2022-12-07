@@ -1,0 +1,68 @@
+{% extends 'base2.html' %}
+
+{% block bodyblock %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br><br>
+    <h3 class="display-10">Image Classification</h3>
+    <br><br>
+    <p>
+        Load an image of a person in .jpg, .jpeg or .png format. This model
+        will detect the face and predict if this person really exists (class: 'real person')
+        or if it is just a product of AI model (class: 'fake person').
+
+    </p>
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <div class="input-group">
+                    <input type="file" class="form-control" name="image_name" required>
+                    <input type="submit" value="Load and classify" class="btn btn-outline-primary">
+                </div>
+            </form>
+
+        </div>
+        <div class="col-8">
+            <br><br>
+
+
+            {% if fileupload  %}
+
+            {% if noimage  %}
+            <h3 class="display-20"> Sorry, model has a problem with this image </h3>
+            <br>
+
+            {% endif %}
+
+
+            <h3 class="display-10"> Image </h3>
+            <br>
+            <img src="/static/predict/predicted_image.jpg" class="image-fluid" width="500" alt="">
+
+            <hr>
+            <br>
+            <table class="table table-hover table table-striped">
+                <tr>
+                    <th>Gray image</th>
+                    <th>Classification</th>
+                    <th>Probability</th>
+                </tr>
+
+                <tr>
+                    <td><img src="/static/predict/gray2.jpg" class="image-fluid" width="100" alt=""></td>
+                    <td class="align-middle">{{ img_class }}</td>
+                    <td class="align-middle">{{ proba  }} %</td>
+                </tr>
+
+            </table>
+
+            {% endif %}
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
